@@ -1,0 +1,232 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="description" content="Bhawana Sahu, Software Engineer DevOps. CI automation, release workflows, developer tooling, selected engineering projects and published research." />
+  <meta name="color-scheme" content="light" />
+  <title>Bhawana Sahu | Software Engineer DevOps</title>
+  <link rel="stylesheet" href="./assets/vendor/pico.min.css" />
+  <link rel="stylesheet" href="./assets/styles.css" />
+  <script src="./assets/main.js" defer="defer"></script>
+</head>
+<body>
+  <a class="skip-link" href="#main">Skip to content</a>
+  <header class="site-header reading-width">
+    <a class="brand" href="#main"><span class="brand-mark" aria-hidden="true">BS</span>Bhawana Sahu</a>
+    <a class="header-contact" href="mailto:bhawana.sahu.12@gmail.com"><img class="icon" src="./assets/vendor/icons/mail.svg" width="18" height="18" alt="" />Email</a>
+  </header>
+  <nav class="section-nav reading-width" aria-label="Portfolio sections">
+    <ul>
+      <li><a href="#experience"><img class="icon" src="./assets/vendor/icons/briefcase-business.svg" width="18" height="18" alt="" />Experience</a></li>
+      <li><a href="#work"><img class="icon" src="./assets/vendor/icons/code-xml.svg" width="18" height="18" alt="" />Projects</a></li>
+      <li><a href="#publications"><img class="icon" src="./assets/vendor/icons/book-open.svg" width="18" height="18" alt="" />Publications</a></li>
+      <li><a href="#education"><img class="icon" src="./assets/vendor/icons/graduation-cap.svg" width="18" height="18" alt="" />Education</a></li>
+      <li><a href="#skills"><img class="icon" src="./assets/vendor/icons/terminal.svg" width="18" height="18" alt="" />Skills</a></li>
+      <li><a href="#contact"><img class="icon" src="./assets/vendor/icons/mail.svg" width="18" height="18" alt="" />Contact</a></li>
+    </ul>
+  </nav>
+  <main id="main" class="reading-width" tabindex="-1">
+    <div class="intro">
+      <h1>Bhawana Sahu</h1>
+      <p class="role">Software Engineer DevOps</p>
+      <p class="summary">I combine software development and DevOps to solve build, test and release challenges for embedded software teams. My work spans CI automation, developer platforms and AI-assisted tools, with a focus on reducing repetitive work and making complex workflows easier to manage.</p>
+      <p class="core-tools"><strong>Core tools</strong> Python / Jenkins / Git / Perforce / Linux</p>
+      <div class="actions intro-actions">
+        <button id="print-resume" type="button" hidden="hidden"><img class="icon" src="./assets/vendor/icons/printer.svg" width="18" height="18" alt="" />Print resume</button>
+        <a href="mailto:bhawana.sahu.12@gmail.com"><img class="icon" src="./assets/vendor/icons/mail.svg" width="18" height="18" alt="" /><span>Email<span class="print-only">: bhawana.sahu.12@gmail.com</span></span></a>
+        <a href="https://www.linkedin.com/in/bhawana-sahu/"><img class="icon" src="./assets/vendor/icons/external-link.svg" width="18" height="18" alt="" /><span>LinkedIn<span class="print-only">: https://www.linkedin.com/in/bhawana-sahu/</span></span></a>
+      </div>
+    </div>
+
+    <section id="experience" class="portfolio-section" aria-labelledby="experience-heading">
+      <div class="section-heading"><span class="section-index" aria-hidden="true">01</span><h2 id="experience-heading">Experience</h2></div>
+      <div class="section-content">
+        <article class="entry">
+          <p class="meta">June 2021-present</p>
+          <h3>AMD (contract role)</h3>
+          <p class="subtitle">Software Engineer DevOps</p>
+          <ul class="contributions">
+            <li>Built Git-to-Perforce synchronization and changelist traceability; automated Python-wheel generation and artifact delivery for Linux and Windows.</li>
+            <li>Migrated Jenkins jobs and implemented targeted reruns for failed or not-run tests, with branch, board and platform selection.</li>
+            <li>Extended Patchwork with branch-aware lifecycle views, validated metadata editing, search APIs and permission-aware developer actions.</li>
+            <li>Implemented MCP-compatible API access, per-user token controls and directory-backed profiles; delivered backend and frontend reporting features.</li>
+            <li>Consolidated CI checks and added validation gates, developer-triggered checks and release-readiness reports.</li>
+            <li>Created DevX, an AI-assisted development agent designed to help CI developers troubleshoot issues, make code changes and reduce repetitive manual work. Integrated LLM-assisted notifications and AI review; tested developer-assistant features.</li>
+            <li>Implemented firmware-size comparison and production rejection checks, with Allure diagnostics and branch-specific reporting.</li>
+            <li>Support releases through patch integration, build triage, changelogs, Doxygen updates, workflow documentation and knowledge transfer.</li>
+          </ul>
+        </article>
+        <article class="entry">
+          <p class="meta">2020-2021</p>
+          <h3>Xilinx India Pvt Ltd</h3>
+          <p class="subtitle">Frontend Developer Intern</p>
+          <ul>
+            <li>Developed a React reporting application with Django REST APIs.</li>
+            <li>Worked with HTML/CSS/JavaScript, including performance and accessibility improvements.</li>
+          </ul>
+        </article>
+      </div>
+    </section>
+
+    <section id="work" class="portfolio-section" aria-labelledby="work-heading">
+      <div class="section-heading"><span class="section-index" aria-hidden="true">02</span><h2 id="work-heading">Selected projects</h2></div>
+      <div class="section-content">
+        <div class="projects">
+          <article class="project">
+            <p class="status">Implemented workflows</p>
+            <h3>Source-control &amp; release automation</h3>
+            <p class="project-summary">Source changes, traceable submissions and cross-platform build artifacts.</p>
+            <dl class="project-details">
+              <dt>Contribution</dt><dd>Built Git-to-Perforce synchronization and changelist updates, scheduled repository synchronization, and Linux/Windows Python-wheel generation and submission. Supported release branches, approved patch integration and documentation delivery.</dd>
+              <dt>Tools / components</dt><dd>Python, Jenkins, Git, Perforce</dd>
+              <dt>Scope</dt><dd>Delivered synchronization and packaging workflows; some SDK packaging remained manual.</dd>
+            </dl>
+          </article>
+          <article class="project">
+            <p class="status">Implemented and tested</p>
+            <h3>CI orchestration &amp; targeted reruns</h3>
+            <p class="project-summary">Test execution scoped to the failed cases, branch and target platform.</p>
+            <dl class="project-details">
+              <dt>Contribution</dt><dd>Migrated Jenkins jobs and implemented failed/not-run test selection, single-branch reruns and board/platform targeting across component workflows. Updated JSON-based result handling and rerun report integration; contributed parallel-execution prototypes.</dd>
+              <dt>Tools / components</dt><dd>Python, Jenkins, Allure, JSON test results</dd>
+              <dt>Scope</dt><dd>Implemented and tested enhancements to existing component test workflows.</dd>
+            </dl>
+          </article>
+          <article class="project">
+            <p class="status">Implemented features; rollout varies</p>
+            <h3>Patchwork &amp; build-reporting tools</h3>
+            <p class="project-summary">Patch progress, release status and developer actions in the same workflow.</p>
+            <dl class="project-details">
+              <dt>Contribution</dt><dd>Built configurable lifecycle views, per-branch timelines and PR status displays with compatibility for older records. Added rerun/bypass/reject/revert controls, build-report models and frontend views.</dd>
+              <dt>Validated updates</dt><dd>Added JSON validation before database writes, branch-aware metadata editing, selectable Jira comment targets and UI/server restrictions for sensitive actions.</dd>
+              <dt>APIs and access</dt><dd>Implemented a changelist/issue search API and MCP-compatible routes for patch actions, CI checks and saved filters. Built per-user token creation, expiry and revocation controls.</dd>
+              <dt>Identity and reliability</dt><dd>Added directory-backed profiles and corrected manager-contact mapping during patch ingestion. Separated email-notification failures from successfully completed reverts.</dd>
+              <dt>Tools / components</dt><dd>Python, Django, PostgreSQL, HTML/CSS/JavaScript, MCP-compatible APIs, LDAP integration</dd>
+              <dt>Scope</dt><dd>Contributions to a shared portal. Rollout varies by feature; token-management database migration validation remains outstanding.</dd>
+            </dl>
+          </article>
+          <article class="project">
+            <p class="status">Implemented checks</p>
+            <h3>CI quality gates &amp; release reporting</h3>
+            <p class="project-summary">Actionable validation results before integration and release.</p>
+            <dl class="project-details">
+              <dt>Contribution</dt><dd>Consolidated CI checks and added developer-triggered checks, compiler-warning rejection, copyright warnings, restricted-keyword validation and Linux checkpatch integration. Developed issue-grouped regression and approval-status views; maintained release checklists, changelogs, Doxygen and regression comparison reports.</dd>
+              <dt>Tools / components</dt><dd>Python, Jenkins, Patchwork, checkpatch, Doxygen</dd>
+              <dt>Scope</dt><dd>Copyright and documentation-compliance checks provide warnings. Approval-status views support reporting, not release enforcement; additional documentation integration remains unverified at runtime.</dd>
+            </dl>
+          </article>
+          <article class="project">
+            <p class="status">Integrated analysis; source-reviewed extensions</p>
+            <h3>AI-assisted CI analysis &amp; developer tooling</h3>
+            <p class="project-summary">Failure analysis and code review connected to CI evidence.</p>
+            <dl class="project-details">
+              <dt>Contribution</dt><dd>Extended LLM-assisted Allure analysis notifications across smoke/system tests and integrated AI review into developer-run CI checks.</dd>
+              <dt>Patchwork integration</dt><dd>Added embedded chat attachment and voice-input controls, on-demand patch-status summaries and stage-linked failure tickets. Worked on model-gateway integration and response/error handling.</dd>
+              <dt>Diagnostic context</dt><dd>Contributed read-only diagnostic integration combining current patch status, Allure failures, retry history, compiler errors and Jenkins log excerpts, with structured chart delivery.</dd>
+              <dt>Tools / components</dt><dd>Allure, Python, Jenkins, Patchwork, JavaScript</dd>
+              <dt>Scope</dt><dd>Notification and review integrations are implemented. Additional interface and gateway extensions remain independently unverified at runtime; an earlier notification redesign remains a proof of concept.</dd>
+            </dl>
+          </article>
+          <article class="project">
+            <p class="status">Implemented; rollout unverified</p>
+            <h3>Repository-aware CI developer assistant</h3>
+            <p class="project-summary">CI workflow knowledge connected to source code and developer change workflows.</p>
+            <dl class="project-details">
+              <dt>Contribution</dt><dd>Built DevX, a FastAPI assistant combining CI workflow documentation with bounded source search, read-only Q&amp;A and a tool-using agent mode.</dd>
+              <dt>Change workflow</dt><dd>Implemented staged file proposals, list/apply/discard operations and pull-request tooling with checks for unrelated working-tree changes.</dd>
+              <dt>Model integration</dt><dd>Added model discovery, tool/image capability checks and request/response normalization across multiple model API protocols, with catalogue caching and failure handling.</dd>
+              <dt>Tools / components</dt><dd>Python, FastAPI, Uvicorn, Git, model API integration</dd>
+              <dt>Scope</dt><dd>Earlier testing covers selected assistant features, not every current gateway or pull-request workflow. Production rollout and current pull-request execution remain unverified.</dd>
+            </dl>
+          </article>
+          <article class="project">
+            <p class="status">Production checks; dashboard enhancements</p>
+            <h3>Firmware build-size gates &amp; diagnostics</h3>
+            <p class="project-summary">Size comparisons and diagnostic reports connected to integration checks.</p>
+            <dl class="project-details">
+              <dt>Contribution</dt><dd>Built patched/unpatched size-comparison workflows, followed by production rejection checks and linked Allure diagnostics. Displayed branch-specific size results in Patchwork and added job-wait coordination for smoke and integration workflows.</dd>
+              <dt>Size-analysis dashboard</dt><dd>Added filtering, sorting and pagination, report-link availability checks, and compact per-board comparisons with diagnostic details.</dd>
+              <dt>Tools / components</dt><dd>Build automation, Jenkins, Allure, Patchwork</dd>
+              <dt>Scope</dt><dd>Specific rejection checks and report integration reached production; rollout of additional dashboard enhancements varies.</dd>
+            </dl>
+          </article>
+        </div>
+        <div class="supplement">
+          <h3>Further development</h3>
+          <dl>
+            <dt>AI usage visibility</dt><dd>Ongoing enhancements for token usage and configurable cost tracking in CI conversations.</dd>
+            <dt>Multi-repository tracking enhancements</dt><dd>Additional patch/commit tracking with dry runs, database association, issue updates, notifications and scheduling.</dd>
+            <dt>Legacy Patchwork modernization</dt><dd>Porting custom features to a current Python 3-based stack; database configuration and migration validation remain in progress.</dd>
+          </dl>
+        </div>
+        <div class="supplement">
+          <h3>Academic projects</h3>
+          <dl>
+            <dt>Genetically optimized neural networks</dt><dd>Breast cancer detection and feature selection, with related published research.</dd>
+            <dt>NDVI comparison</dt><dd>Comparison of Landsat 8 and Sentinel 2 imagery.</dd>
+            <dt>Health Assured</dt><dd>Academic mobile application using Firebase.</dd>
+            <dt>PG accommodation portal</dt><dd>Academic accommodation project using PHP/MySQL.</dd>
+          </dl>
+        </div>
+      </div>
+    </section>
+
+    <section id="publications" class="portfolio-section" aria-labelledby="publications-heading">
+      <div class="section-heading"><span class="section-index" aria-hidden="true">03</span><h2 id="publications-heading">Publications</h2></div>
+      <div class="section-content">
+        <article class="publication">
+          <p class="meta">Wiley</p>
+          <h3>A Comparative Study of Different Classifiers to Propose a GONN for Breast Cancer Detection</h3>
+          <a href="https://doi.org/10.1002/9781119786122.ch8">https://doi.org/10.1002/9781119786122.ch8</a>
+        </article>
+        <article class="publication">
+          <p class="meta">FICTA 2020, Springer</p>
+          <h3>A comparative Analysis of different Classifiers and proposed genetically optimised neural network</h3>
+          <a href="https://doi.org/10.1007/978-981-15-5788-0_61">https://doi.org/10.1007/978-981-15-5788-0_61</a>
+        </article>
+      </div>
+    </section>
+
+    <section id="education" class="portfolio-section" aria-labelledby="education-heading">
+      <div class="section-heading"><span class="section-index" aria-hidden="true">04</span><h2 id="education-heading">Education</h2></div>
+      <div class="section-content">
+        <article class="entry">
+          <p class="meta">2019-2021</p><h3>MTech, Computer Science and Engineering</h3><p class="subtitle">VIT Vellore</p><p>CGPA 8.32</p>
+        </article>
+        <article class="entry">
+          <p class="meta">2014-2018</p><h3>BE, Information Technology</h3><p class="subtitle">BIT Durg</p><p>CGPA 7.82</p>
+        </article>
+      </div>
+    </section>
+
+    <section id="skills" class="portfolio-section" aria-labelledby="skills-heading">
+      <div class="section-heading"><span class="section-index" aria-hidden="true">05</span><h2 id="skills-heading">Skills</h2></div>
+      <div class="section-content">
+        <dl class="skills">
+          <dt>Languages</dt><dd>Python, HTML/CSS/JavaScript</dd>
+          <dt>AI application services</dt><dd>FastAPI, Uvicorn, multi-model API integration</dd>
+          <dt>Web development</dt><dd>React, Django REST, Django</dd>
+          <dt>Databases</dt><dd>PostgreSQL, MySQL, Oracle</dd>
+          <dt>Operating systems</dt><dd>Linux, Windows</dd>
+          <dt>CI and containers</dt><dd>Jenkins, Docker</dd>
+          <dt>Versioning and artifacts</dt><dd>Git, Perforce, Artifactory</dd>
+          <dt>Reporting and collaboration</dt><dd>Allure, Patchwork, Jira, Slack</dd>
+          <dt>Code and documentation checks</dt><dd>checkpatch, Doxygen</dd>
+          <dt>Application integrations</dt><dd>MCP-compatible APIs, LDAP integration</dd>
+        </dl>
+        <p class="practical-focus"><strong>Practical focus</strong> Test orchestration, source-control synchronization, release/artifact workflows, CI quality gates and source-grounded developer tooling.</p>
+      </div>
+    </section>
+
+    <section id="contact" class="portfolio-section" aria-labelledby="contact-heading">
+      <div class="section-heading"><span class="section-index" aria-hidden="true">06</span><h2 id="contact-heading">Contact</h2></div>
+      <div class="section-content actions contact-actions">
+        <a href="mailto:bhawana.sahu.12@gmail.com"><img class="icon" src="./assets/vendor/icons/mail.svg" width="18" height="18" alt="" /><span>bhawana.sahu.12@gmail.com</span></a>
+        <a href="https://www.linkedin.com/in/bhawana-sahu/"><img class="icon" src="./assets/vendor/icons/external-link.svg" width="18" height="18" alt="" /><span>LinkedIn<span class="print-only">: https://www.linkedin.com/in/bhawana-sahu/</span></span></a>
+      </div>
+    </section>
+  </main>
+  <footer class="site-footer reading-width"><span>Bhawana Sahu</span><span>Cooking / Reading / Painting / Travel</span></footer>
+</body>
+</html>
