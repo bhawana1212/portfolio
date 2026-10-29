@@ -1,0 +1,14 @@
+/.azure/
+/.copilot-azure/
+/.cline_storage/
+/Bhawana_Sahu_Resume.pdf
+/.vscode/
+/node_modules/
+/test-results/
+/playwright-report/
+*.log
+/services/web/node_modules/
+/services/web/dist/
+/services/web/.vite/
+/services/web/test-results/
+/services/web/playwright-report/

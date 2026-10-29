@@ -1,0 +1,34 @@
+Bhawana Sahu portfolio: third-party notices
+
+Reference-inspired composition and adapted camera mapping/procedural scene patterns:
+Avinash Sahu, https://github.com/Avinash9694/Avinash9694.github.io
+Immutable revision: 8c138a24156073d3a8af86453ef024880eedcfc4
+License: MIT, complete notice in reference-MIT.txt.
+Relevant adapted files: src/lib/layout.ts, src/scene/Desk.tsx, src/scene/Scene.tsx.
+Reviewed upstream files: src/lib/world.ts, src/lib/camera-path.ts,
+src/scene/camera-rig.tsx, src/scene/name-letters.tsx,
+src/scene/island/desk.tsx, src/scene/island/monitor.tsx,
+src/scene/scene-canvas.tsx, src/app.tsx, src/main.tsx.
+The reference author's biography, photos, screenshots, contacts, analytics,
+social metadata and publishing workflows are not included.
+
+All scene geometry is procedural. No third-party photo, model, texture or
+private project screenshot is used.
+
+Space Grotesk and Source Sans 3 webfonts: local Fontsource distributions,
+SIL Open Font License 1.1. Complete font notices accompany the build.
+The derived desk-display typeface is renamed and remains OFL-1.1 licensed;
+font conversion and subsetting are permitted by the OFL. It is not sold alone.
+Extrusion source: floriankarsten/space-grotesk revision
+03507d024a01282884232081fc6011c09ff4e849,
+fonts/ttf/static/SpaceGrotesk-Bold.ttf.
+Source SHA-256: 7209bbb75fc0f5c546a5f5773b0db74ffc6abf04c2148c1105cace5765a96bdb.
+Conversion script: scripts/build-typeface.mjs; generated name: Desk Display.
+
+GSAP is not MIT. It is used under the Standard No Charge GSAP License.
+This portfolio is a website, not a visual animation builder or competitive
+animation-authoring product. Preserve the supplied proprietary notices.
+Terms: https://gsap.com/community/standard-license/
+
+Package versions and complete dependency license notices are recorded in
+dependency-notices.txt, generated from the locked installed distributions.
