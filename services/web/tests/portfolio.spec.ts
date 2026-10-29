@@ -57,6 +57,30 @@ test('production HTML preserves all public copy and fragments', async ({ browser
   await context.close();
 });
 
+test('reading sections match the dark profile and retain readable print styles', async ({ page }) => {
+  await page.emulateMedia({ reducedMotion: 'reduce' });
+  await page.goto('./#publications');
+  await expect(page.locator('.reading-band')).toHaveCSS('background-color', 'rgb(20, 22, 24)');
+  await expect(page.locator('.reading-band')).toHaveCSS('color', 'rgb(243, 244, 242)');
+  await expect(page.locator('.publication .meta').first()).toHaveCSS('color', 'rgb(232, 198, 106)');
+  await expect(page.locator('.publication a').first()).toHaveCSS('color', 'rgb(105, 215, 196)');
+  await expect(page.locator('#contact')).toHaveCSS('background-color', 'rgb(20, 22, 24)');
+  for (const [name, width, height] of [['desktop', 1440, 900], ['mobile', 390, 844], ['narrow', 320, 740]] as const) {
+    await page.setViewportSize({ width, height });
+    for (const section of ['publications', 'education', 'skills', 'contact']) {
+      await page.evaluate(id => document.getElementById(id)?.scrollIntoView(), section);
+      expect(await page.evaluate(() => document.documentElement.scrollWidth <= innerWidth + 1), `${name} ${section}`).toBe(true);
+      if (name !== 'narrow') await page.screenshot({ path: `${evidence}/${name}-${section}.png` });
+    }
+  }
+  await parity(page);
+  await page.emulateMedia({ media: 'print' });
+  await expect(page.locator('.reading-band')).toHaveCSS('background-color', 'rgb(255, 255, 255)');
+  await expect(page.locator('.reading-band')).toHaveCSS('background-image', 'none');
+  await expect(page.locator('.publication h3').first()).toHaveCSS('color', 'rgb(0, 0, 0)');
+  await expect(page.locator('#contact')).toHaveCSS('background-color', 'rgb(255, 255, 255)');
+});
+
 test('responsive views, real canvas variation, camera stations and pause', async ({ page }) => {
   const errors: string[] = [];
   page.on('pageerror', error => errors.push(error.message));
