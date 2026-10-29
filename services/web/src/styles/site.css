@@ -20,13 +20,13 @@ svg { flex-shrink: 0; width: 22px; height: 22px; }
 .masthead nav a { min-height: 44px; display: inline-flex; align-items: center; gap: 6px; color: var(--muted); font-size: 16px; text-decoration: none; }
 .masthead nav svg { width: 18px; height: 18px; }
 .hero { position: relative; min-height: 680px; padding: 48px 32px 24px; isolation: isolate; display: flex; flex-direction: column; justify-content: space-between; background-image: linear-gradient(#ffffff03 1px,transparent 1px),linear-gradient(90deg,#ffffff03 1px,transparent 1px); background-size: 80px 80px; }
-.hero-copy { text-align: left; width: min(680px, 100%); margin: auto; position: relative; z-index: 2; pointer-events: none; }
+.hero-copy { text-align: center; width: min(820px, 100%); margin: auto; position: relative; z-index: 2; pointer-events: none; }
 .hero-eyebrow { display: block; margin-bottom: 14px; font: 600 13px/1.5 'Space Grotesk Variable', sans-serif; text-transform: uppercase; color: var(--gold); }
 .hero-copy a,.hero-copy button { pointer-events: auto; }
 .role { font-size: 23px; color: var(--teal); }
 .introduction { max-width: 78ch; margin: 18px auto; color: var(--muted); }
 .core-tools { font: 15px/1.6 Consolas, monospace; margin: 22px 0; }
-.hero-actions { justify-content: flex-start; gap: 16px 24px; flex-wrap: wrap; padding: 0; }
+.hero-actions { justify-content: center; gap: 16px 24px; flex-wrap: wrap; padding: 0; }
 .resume-link { display: inline-flex; align-items: center; justify-content: center; gap: 8px; min-height: 44px; padding: 8px 14px; border: 1px solid var(--gold); border-radius: 4px; color: var(--gold); text-decoration: none; }
 .resume-link:hover { background: #e8c66a; color: #141618; }
 .contacts { display: flex; gap: 14px 28px; flex-wrap: wrap; }
@@ -64,8 +64,8 @@ dd { margin: 0; overflow-wrap: anywhere; }
 .scene-layer canvas { display: block; touch-action: pan-y; }
 .scene-controls { position: fixed; bottom: 18px; right: 20px; z-index: 10; align-items: center; background: #141618; border: 1px solid var(--border); border-radius: 4px; padding: 2px 6px; }
 .scene-controls button { min-width: 44px; min-height: 44px; }
-.graphics-on .hero { min-height: calc(100svh - 130px); background: linear-gradient(90deg, #141618f5, #141618cc 32%, transparent 58%); }
-.graphics-on .hero-copy { width: min(430px, 36%); margin: auto 0; padding-block: 24px; }
+.graphics-on .hero { min-height: calc(100svh - 130px); }
+.graphics-on .hero-copy { width: min(820px, 100%); margin: 0 auto; }
 .graphics-on .hero h1 { font-size: 42px; }
 .graphics-on .hero .role { margin: 8px 0; }
 .graphics-on .hero .introduction { margin: 8px auto; }

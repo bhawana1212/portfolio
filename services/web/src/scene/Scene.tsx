@@ -50,8 +50,8 @@ function CameraRig({ onReady, onFailure }: Pick<SceneProps, 'onReady' | 'onFailu
     const data = measured.current;
     const hero = data.scroll < (data.anchors[1]?.top ?? Infinity) * .5;
     const desktop = size.width > 860;
-    const left = desktop ? hero ? (document.querySelector('.hero-copy')?.getBoundingClientRect().right ?? size.width * .36) + 32 : document.querySelector('#experience .section-inner')?.getBoundingClientRect().right ?? size.width * .57 : 0;
-    const top = desktop && hero ? Math.max(0, document.querySelector('#masthead')?.getBoundingClientRect().bottom ?? 0) : 0;
+    const left = desktop && !hero ? document.querySelector('#experience .section-inner')?.getBoundingClientRect().right ?? size.width * .57 : 0;
+    const top = desktop && hero ? Math.max(0, (document.querySelector('.hero-copy')?.getBoundingClientRect().bottom ?? 0) + 24) : 0;
     if (!curves.current || Math.abs(data.left - left) > 1 || Math.abs(data.top - top) > 1) {
       data.left = left; data.top = top;
       const frame = framingFor(size.width, size.height, left, top);

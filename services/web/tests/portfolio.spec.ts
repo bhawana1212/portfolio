@@ -71,8 +71,15 @@ test('responsive views, real canvas variation, camera stations and pause', async
     expect(await page.evaluate(() => document.documentElement.scrollWidth <= innerWidth + 1), name).toBe(true);
     const overlaps = await page.locator('.hero-copy h1,.hero-copy p').evaluateAll(elements => elements.slice(1).filter((element, index) => element.getBoundingClientRect().top < elements[index].getBoundingClientRect().bottom - 1).length);
     expect(overlaps, name).toBe(0);
+    const copy = await page.locator('.hero-copy').boundingBox();
+    expect(copy).not.toBeNull();
+    expect(Math.abs(copy!.x + copy!.width / 2 - width / 2), `${name} centered introduction`).toBeLessThan(2);
+    await expect(page.locator('.hero-copy')).toHaveCSS('text-align', 'center');
+    await expect(page.locator('.hero-actions')).toHaveCSS('justify-content', 'center');
     if (name === 'desktop' || name === 'mobile') {
+      const overlayMask = await page.addStyleTag({ content: '.masthead,.hero-copy,.section-inner,.next-section,.scene-controls,.footer { visibility: hidden !important; }' });
       const pixels = await page.locator('canvas').screenshot({ path: `${evidence}/${name}-canvas.png` });
+      await overlayMask.evaluate(element => element.remove());
       const image = await loadImage(pixels);
       const surface = createCanvas(image.width, image.height);
       const context = surface.getContext('2d');
@@ -80,12 +87,22 @@ test('responsive views, real canvas variation, camera stations and pause', async
       const { data } = context.getImageData(0, 0, image.width, image.height);
       const colors = new Set<string>();
       let litPixels = 0;
+      let firstLitRow = image.height;
+      let leftmostLitPixel = image.width;
+      let rightmostLitPixel = 0;
       for (let offset = 0; offset < data.length; offset += 16) {
         colors.add(`${data[offset] >> 4},${data[offset + 1] >> 4},${data[offset + 2] >> 4}`);
-        if (Math.max(data[offset], data[offset + 1], data[offset + 2]) > 120) litPixels++;
+        if (Math.max(data[offset], data[offset + 1], data[offset + 2]) > 120) {
+          litPixels++;
+          firstLitRow = Math.min(firstLitRow, Math.floor(offset / 4 / image.width));
+          leftmostLitPixel = Math.min(leftmostLitPixel, offset / 4 % image.width);
+          rightmostLitPixel = Math.max(rightmostLitPixel, offset / 4 % image.width);
+        }
       }
       expect(colors.size, `${name} scene colors`).toBeGreaterThan(30);
       expect(litPixels, `${name} visible desk pixels`).toBeGreaterThan(100);
+      expect(Math.abs((leftmostLitPixel + rightmostLitPixel) / 2 - image.width / 2), `${name} centered desk`).toBeLessThan(image.width * .15);
+      if (name === 'desktop') expect(firstLitRow, 'desk below introduction').toBeGreaterThan(copy!.y + copy!.height);
     }
   }
   await page.setViewportSize({ width: 1440, height: 900 });
