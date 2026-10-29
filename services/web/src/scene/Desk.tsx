@@ -11,15 +11,15 @@ export function Block({ position, size, color = colors.metal, metalness = .4 }: 
 
 export function Desk() {
   return <group>
-    <mesh position={[0, -.55, 0]} receiveShadow><cylinderGeometry args={[3.65, 3.2, .4, 64]} /><meshStandardMaterial color="#303735" roughness={.85} /></mesh>
-    <mesh position={[0, -.78, 0]}><cylinderGeometry args={[3.2, 2.7, .12, 64]} /><meshStandardMaterial color="#0c100f" /></mesh>
+    <mesh position={[0, -.5, 0]} rotation={[-Math.PI / 2, 0, 0]} receiveShadow><planeGeometry args={[80, 80]} /><shadowMaterial transparent opacity={.3} /></mesh>
     <RoundedBox args={[5.1, .18, 2.45]} radius={.08} smoothness={3} position={[0, .8, 0]} castShadow receiveShadow><meshStandardMaterial color="#46504d" metalness={.25} roughness={.5} /></RoundedBox>
     {[-2.15, 2.15].flatMap(horizontal => [-.85, .85].map(depth => <Block key={`${horizontal}-${depth}`} position={[horizontal, .13, depth]} size={[.12, 1.25, .12]} color={colors.dark} />))}
     <Block position={[0, 1.08, -.58]} size={[.14, .55, .12]} />
     <Block position={[0, .94, -.55]} size={[.9, .08, .55]} />
     <RoundedBox args={[2.45, 1.45, .16]} radius={.06} smoothness={3} position={[0, 1.85, -.65]} castShadow><meshStandardMaterial color="#1b2220" metalness={.65} roughness={.25} /></RoundedBox>
     <Block position={[0, 1.87, -.556]} size={[2.26, 1.23, .02]} color="#0a2420" metalness={0} />
-    {[1.53, 1.73, 1.93, 2.13].map((vertical, index) => <group key={vertical}>
+    <Center position={[0, 2.2, -.53]}><Text3D font={typeface} size={.2} height={.008} curveSegments={6}>{portfolio.name}<meshBasicMaterial color={colors.gold} /></Text3D></Center>
+    {[1.5, 1.7, 1.9].map((vertical, index) => <group key={vertical}>
       <mesh position={[-.93, vertical, -.535]}><boxGeometry args={[.09, .065, .01]} /><meshBasicMaterial color={colors.gold} /></mesh>
       <mesh position={[-.15 + index * .04, vertical, -.535]}><boxGeometry args={[1.22 - index * .18, .04, .01]} /><meshBasicMaterial color={colors.teal} /></mesh>
     </group>)}
@@ -41,6 +41,5 @@ export function Desk() {
       <mesh position={[0, .194, 0]} rotation={[-Math.PI / 2, 0, 0]}><circleGeometry args={[.16, 24]} /><meshStandardMaterial color="#29201a" /></mesh>
       <mesh position={[-.2, .01, 0]}><torusGeometry args={[.12, .04, 8, 20]} /><meshStandardMaterial color={colors.ceramic} /></mesh>
     </group>
-    <Center position={[0, 3.3, -.7]}><Text3D font={typeface} size={.66} height={.18} bevelEnabled bevelSize={.012} bevelThickness={.02} bevelSegments={3} curveSegments={8} castShadow>{portfolio.name}<meshStandardMaterial color={colors.gold} metalness={.72} roughness={.27} /></Text3D></Center>
   </group>;
 }

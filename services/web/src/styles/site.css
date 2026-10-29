@@ -19,13 +19,16 @@ svg { flex-shrink: 0; width: 22px; height: 22px; }
 .masthead nav { display: flex; flex-wrap: wrap; gap: 0 20px; margin-left: auto; }
 .masthead nav a { min-height: 44px; display: inline-flex; align-items: center; gap: 6px; color: var(--muted); font-size: 16px; text-decoration: none; }
 .masthead nav svg { width: 18px; height: 18px; }
-.hero { position: relative; min-height: 680px; padding: 36px 24px 28px; isolation: isolate; display: flex; flex-direction: column; justify-content: space-between; background-image: linear-gradient(#ffffff03 1px,transparent 1px),linear-gradient(90deg,#ffffff03 1px,transparent 1px); background-size: 80px 80px; }
-.hero-copy { text-align: center; width: min(920px, 100%); margin: auto; position: relative; z-index: 2; pointer-events: none; }
+.hero { position: relative; min-height: 680px; padding: 48px 32px 24px; isolation: isolate; display: flex; flex-direction: column; justify-content: space-between; background-image: linear-gradient(#ffffff03 1px,transparent 1px),linear-gradient(90deg,#ffffff03 1px,transparent 1px); background-size: 80px 80px; }
+.hero-copy { text-align: left; width: min(680px, 100%); margin: auto; position: relative; z-index: 2; pointer-events: none; }
+.hero-eyebrow { display: block; margin-bottom: 14px; font: 600 13px/1.5 'Space Grotesk Variable', sans-serif; text-transform: uppercase; color: var(--gold); }
 .hero-copy a,.hero-copy button { pointer-events: auto; }
 .role { font-size: 23px; color: var(--teal); }
 .introduction { max-width: 78ch; margin: 18px auto; color: var(--muted); }
 .core-tools { font: 15px/1.6 Consolas, monospace; margin: 22px 0; }
-.hero-actions { justify-content: center; gap: 24px; flex-wrap: wrap; }
+.hero-actions { justify-content: flex-start; gap: 16px 24px; flex-wrap: wrap; padding: 0; }
+.resume-link { display: inline-flex; align-items: center; justify-content: center; gap: 8px; min-height: 44px; padding: 8px 14px; border: 1px solid var(--gold); border-radius: 4px; color: var(--gold); text-decoration: none; }
+.resume-link:hover { background: #e8c66a; color: #141618; }
 .contacts { display: flex; gap: 14px 28px; flex-wrap: wrap; }
 .contacts a { min-height: 44px; display: inline-flex; align-items: center; gap: 8px; }
 .next-section { width: min(1180px, 100%); margin: 30px auto 0; padding-top: 16px; border-top: 1px solid var(--border); display: flex; align-items: center; gap: 12px; text-decoration: none; color: var(--muted); }
@@ -61,12 +64,12 @@ dd { margin: 0; overflow-wrap: anywhere; }
 .scene-layer canvas { display: block; touch-action: pan-y; }
 .scene-controls { position: fixed; bottom: 18px; right: 20px; z-index: 10; align-items: center; background: #141618; border: 1px solid var(--border); border-radius: 4px; padding: 2px 6px; }
 .scene-controls button { min-width: 44px; min-height: 44px; }
-.graphics-on .hero { min-height: calc(100svh - 100px); }
-.graphics-on .hero-copy { margin: 0 auto; }
-.graphics-on .hero h1 { font-size: 32px; }
+.graphics-on .hero { min-height: calc(100svh - 130px); background: linear-gradient(90deg, #141618f5, #141618cc 32%, transparent 58%); }
+.graphics-on .hero-copy { width: min(430px, 36%); margin: auto 0; padding-block: 24px; }
+.graphics-on .hero h1 { font-size: 42px; }
 .graphics-on .hero .role { margin: 8px 0; }
 .graphics-on .hero .introduction { margin: 8px auto; }
-.graphics-on .hero .core-tools { margin: 12px 0; }
+.graphics-on .hero .core-tools { margin: 18px 0 24px; color: var(--muted); }
 .graphics-on :is(#experience,#work) .section-inner { max-width: none; width: 57%; margin: 0; grid-template-columns: 1fr; padding-left: max(32px, calc((100vw - 1240px) / 2)); background: #141618; }
 .graphics-on :is(#experience,#work) .section-title h2 { flex-basis: auto; }
 .graphics-on .section { position: relative; z-index: 1; pointer-events: none; }
@@ -82,18 +85,13 @@ dd { margin: 0; overflow-wrap: anywhere; }
 [data-hydrated='true'] .icon-action { min-width: 44px; }
 @media (max-width: 1100px) { .masthead { flex-wrap: wrap; gap: 6px 18px; } .masthead nav { order: 3; width: 100%; margin-left: 0; } .masthead .icon-action { margin-left: auto; } }
 @media (max-width: 860px) {
-  .scene-layer { position: relative; inset: auto; height: 180px; grid-row: 3; z-index: 0; width: 100%; min-width: 0; }
-  .graphics-on .hero { padding-top: 24px; min-height: 0; display: grid; grid-template-columns: minmax(0, 1fr); gap: 8px; }
-  .graphics-on .hero-copy { display: contents; }
-  .graphics-on .hero h1 { grid-row: 1; text-align: center; }
-  .graphics-on .hero .role { grid-row: 2; text-align: center; }
-  .graphics-on .hero .introduction { grid-row: 4; text-align: center; }
-  .graphics-on .hero .core-tools { grid-row: 5; text-align: center; }
-  .graphics-on .hero .hero-actions { grid-row: 6; }
-  .graphics-on .hero .next-section { grid-row: 8; margin-top: 12px; }
+  .scene-layer { position: relative; inset: auto; height: 280px; order: 2; z-index: 0; width: 100%; min-width: 0; }
+  .graphics-on .hero { padding-top: 24px; min-height: 0; gap: 8px; background: none; }
+  .graphics-on .hero-copy { width: 100%; max-width: 680px; margin: auto; padding: 0; order: 1; }
+  .graphics-on .hero .next-section { order: 4; margin-top: 12px; }
   .graphics-on .hero h1 { font-size: 38px; }
   .graphics-on :is(#experience,#work) .section-inner { width: 100%; padding: 36px 24px; }
-  .scene-controls { position: relative; grid-row: 7; bottom: auto; right: auto; justify-self: center; width: max-content; margin: 8px auto; }
+  .scene-controls { position: relative; order: 3; bottom: auto; right: auto; width: max-content; margin: 8px auto; }
   h1 { font-size: 48px; } .section-inner { grid-template-columns: 1fr; gap: 28px; padding: 36px 24px; } .section-title h2 { flex-basis: auto; }
   .masthead { padding: 12px 24px; } .hero { min-height: 600px; } .detail-list { grid-template-columns: 1fr; gap: 4px; } dd { margin-bottom: 16px; }
 }
@@ -107,7 +105,7 @@ dd { margin: 0; overflow-wrap: anywhere; }
   @page { margin: 15mm; }
   html,body,.portfolio,.reading-band { background: white !important; color: black !important; }
   .portfolio { font-size: 10pt; line-height: 1.4; }
-  .masthead,.skip,.next-section,.project-index,.attribution,.scene-layer,.scene-controls,.js-action,[data-hydrated='true'] .js-action { display: none !important; }
+  .masthead,.skip,.next-section,.project-index,.attribution,.scene-layer,.scene-controls,.hero-eyebrow,.resume-link,.js-action,[data-hydrated='true'] .js-action { display: none !important; }
   .hero { min-height: 0; display: block; padding: 0; background: none; }
   .hero-copy { text-align: left; width: 100%; margin: 0; }
   h1 { font-size: 28pt; } h2 { font-size: 16pt; } h3 { font-size: 12pt; }
@@ -118,7 +116,7 @@ dd { margin: 0; overflow-wrap: anywhere; }
   .section-inner { display: block; padding: 14pt 0; }
   .graphics-on :is(#experience,#work) .section-inner { width: 100%; padding: 14pt 0; background: white; }
   .graphics-on .hero { min-height: 0; padding: 0; display: block; }
-  .graphics-on .hero-copy { display: block; }
+  .graphics-on .hero-copy { display: block; width: 100%; margin: 0; padding: 0; }
   .graphics-on .hero h1 { font-size: 28pt; }
   .section-title { margin-bottom: 10pt; } .section-title > svg,.section-title > span { display: none; }
   .section { border: 0; } .role-entry { border: 0; padding: 0; margin-bottom: 12pt; }

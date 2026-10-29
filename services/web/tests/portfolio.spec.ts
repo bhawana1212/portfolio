@@ -1,8 +1,10 @@
 import { test, expect, type Page } from '@playwright/test';
 import { mkdirSync, readFileSync, readdirSync, writeFileSync } from 'node:fs';
 import { resolve } from 'node:path';
+import { createCanvas, loadImage } from '@napi-rs/canvas';
 import { portfolio, type Detail } from '../src/data/portfolio';
 
+const previewUrl = `http://127.0.0.1:${process.env.PORTFOLIO_PREVIEW_PORT ?? '4173'}/portfolio/`;
 const evidence = process.env.PORTFOLIO_SOURCE_ROOT
   ? resolve(process.env.PORTFOLIO_SOURCE_ROOT, '.azure/validation/react')
   : resolve('test-results/evidence');
@@ -16,7 +18,7 @@ const source = {
     ...portfolio.publications.flatMap(publication => [publication.venue, publication.title]),
     ...portfolio.education.flatMap(education => [education.date, education.title, education.institution, education.grade]),
     ...detailText(portfolio.skills), portfolio.focus, portfolio.interests],
-  links: ['#main', '#experience', '#work', '#publications', '#education', '#skills', '#contact', portfolio.email, portfolio.linkedin, ...portfolio.publications.map(publication => publication.url)],
+  links: ['#main', '#desk', '#experience', '#work', '#publications', '#education', '#skills', '#contact', '/portfolio/resume.pdf', portfolio.email, portfolio.linkedin, ...portfolio.publications.map(publication => publication.url)],
   fragments: ['main', 'experience', 'work', 'publications', 'education', 'skills', 'contact'],
 };
 const normalize = (value: string) => value.replace(/\s+/g, ' ').trim();
@@ -49,7 +51,7 @@ async function parity(page: Page) {
 test('production HTML preserves all public copy and fragments', async ({ browser }) => {
   const context = await browser.newContext({ javaScriptEnabled: false });
   const page = await context.newPage();
-  await page.goto('http://127.0.0.1:4173/portfolio/');
+  await page.goto(previewUrl);
   await parity(page);
   await page.screenshot({ path: `${evidence}/no-javascript.png`, fullPage: true });
   await context.close();
@@ -69,6 +71,22 @@ test('responsive views, real canvas variation, camera stations and pause', async
     expect(await page.evaluate(() => document.documentElement.scrollWidth <= innerWidth + 1), name).toBe(true);
     const overlaps = await page.locator('.hero-copy h1,.hero-copy p').evaluateAll(elements => elements.slice(1).filter((element, index) => element.getBoundingClientRect().top < elements[index].getBoundingClientRect().bottom - 1).length);
     expect(overlaps, name).toBe(0);
+    if (name === 'desktop' || name === 'mobile') {
+      const pixels = await page.locator('canvas').screenshot({ path: `${evidence}/${name}-canvas.png` });
+      const image = await loadImage(pixels);
+      const surface = createCanvas(image.width, image.height);
+      const context = surface.getContext('2d');
+      context.drawImage(image, 0, 0);
+      const { data } = context.getImageData(0, 0, image.width, image.height);
+      const colors = new Set<string>();
+      let litPixels = 0;
+      for (let offset = 0; offset < data.length; offset += 16) {
+        colors.add(`${data[offset] >> 4},${data[offset + 1] >> 4},${data[offset + 2] >> 4}`);
+        if (Math.max(data[offset], data[offset + 1], data[offset + 2]) > 120) litPixels++;
+      }
+      expect(colors.size, `${name} scene colors`).toBeGreaterThan(30);
+      expect(litPixels, `${name} visible desk pixels`).toBeGreaterThan(100);
+    }
   }
   await page.setViewportSize({ width: 1440, height: 900 });
   await page.evaluate(() => window.scrollTo(0, 0));
@@ -137,7 +155,7 @@ test('A4 and Letter PDFs retain text and external destinations with and without 
   for (const javaScriptEnabled of [true, false]) {
     const context = await browser.newContext({ javaScriptEnabled, reducedMotion: 'reduce' });
     const page = await context.newPage();
-    await page.goto('http://127.0.0.1:4173/portfolio/');
+    await page.goto(previewUrl);
     await page.emulateMedia({ media: 'print' });
     await page.evaluate(() => document.fonts.ready);
     for (const format of ['A4', 'Letter'] as const) {
@@ -147,15 +165,31 @@ test('A4 and Letter PDFs retain text and external destinations with and without 
   }
   const graphicsContext = await browser.newContext({ viewport: { width: 1440, height: 900 } });
   const graphicsPage = await graphicsContext.newPage();
-  await graphicsPage.goto('http://127.0.0.1:4173/portfolio/');
+  await graphicsPage.goto(previewUrl);
   await expect(graphicsPage.locator('html')).toHaveClass(/graphics-on/);
   for (const format of ['A4', 'Letter'] as const) await graphicsPage.pdf({ path: `${evidence}/graphics-${format}.pdf`, format, displayHeaderFooter: false });
   await graphicsContext.close();
 });
 
+test('resume opens the exact shared PDF without JavaScript', async ({ browser, request }) => {
+  const context = await browser.newContext({ javaScriptEnabled: false });
+  const page = await context.newPage();
+  await page.goto(previewUrl);
+  const resume = page.getByRole('link', { name: 'Resume', exact: true });
+  await expect(resume).toBeVisible();
+  await expect(resume).toHaveAttribute('href', '/portfolio/resume.pdf');
+  const response = await request.get(await resume.getAttribute('href') ?? '');
+  expect(response.status()).toBe(200);
+  expect(response.headers()['content-type']).toContain('application/pdf');
+  const body = await response.body();
+  expect(body.subarray(0, 5).toString()).toBe('%PDF-');
+  expect(body.equals(readFileSync(resolve('public/resume.pdf')))).toBe(true);
+  await context.close();
+});
+
 test('production assets, public link allowlist, privacy and real font loading', async ({ page, request }) => {
   const errors: string[] = [];
-  page.on('response', response => { if (response.url().startsWith('http://127.0.0.1:4173/') && response.status() >= 400) errors.push(`${response.status()} ${response.url()}`); });
+  page.on('response', response => { if (response.url().startsWith(previewUrl) && response.status() >= 400) errors.push(`${response.status()} ${response.url()}`); });
   await page.goto('./');
   await page.evaluate(() => document.fonts.ready);
   const fontFamilies = await page.evaluate(() => [...document.fonts].filter(font => font.status === 'loaded').map(font => font.family));

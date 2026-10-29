@@ -2,16 +2,16 @@
 
 A public engineering portfolio with build-time HTML and a progressive Three.js desk. The complete biography, project caveats, native navigation and printable resume do not depend on JavaScript or graphics. No backend, accounts, API, analytics, cloud service or secrets are required.
 
-The reviewed [docs/index.html](docs/index.html) contains the locally refreshed production build. Editable source is in [services/web](services/web); builds only write to its ignored staging output, never directly to the publishable site. Nothing has been published.
+The reviewed [docs/index.html](docs/index.html) contains the production build. Editable source is in [services/web](services/web); builds only write to its ignored staging output, never directly to the publishable site. The front-page Resume link opens the owner-provided PDF; the separate print control prints the full portfolio.
 
 ## Publish On GitHub Pages
 
 Visitors only need a browser. React, Three.js, fonts and other runtime assets are included in the static build; nobody needs to install Node.js, npm or Azure tools to view the portfolio. Node.js and npm are only needed when rebuilding the editable source.
 
-1. Create a public GitHub repository named exactly `portfolio`. The existing build uses `/portfolio/` asset paths.
-2. Upload the complete `docs` folder, including `.nojekyll`, `assets`, `fonts` and `licenses`, to the repository's `main` branch. These are all the files needed to host the site; source code is optional for hosting. Review the public content before uploading, and do not upload private workspace material.
-3. In the repository's **Settings > Pages**, choose **Deploy from a branch**, select **main** and **/docs**, then **Save**.
-4. Wait for GitHub Pages to finish publishing and open the URL shown in those settings. For a normal GitHub account, it will be `https://YOUR-USERNAME.github.io/portfolio/`, with your actual username in place of the placeholder.
+1. Use [bhawana1212/portfolio](https://github.com/bhawana1212/portfolio). The build uses `/portfolio/` asset paths.
+2. Push the complete `docs` folder, including `.nojekyll`, `resume.pdf`, `assets`, `fonts` and `licenses`, to the repository's `master` branch. These are all the files needed to host the site; source code is optional for hosting. Review the public content before uploading, and do not upload private workspace material.
+3. In the repository's **Settings > Pages**, choose **Deploy from a branch**, select **master** and **/docs**, then **Save**.
+4. Wait for GitHub Pages to finish publishing, then open [the portfolio](https://bhawana1212.github.io/portfolio/).
 5. In the repository's **About** settings, set **Website** to that published URL so visitors can click it directly from the repository.
 
 No Azure subscription, backend, database, custom build workflow or visitor installation is required. GitHub serves the prebuilt files over HTTPS. A repository file link displays source; use the Pages URL to open the actual portfolio. To publish later changes, rebuild and replace `docs` with the reviewed build as described below, then push or upload it again.
@@ -36,7 +36,7 @@ npm --prefix services/web run preview -- --host 127.0.0.1 --port 4173
 npm --prefix services/web run test:e2e
 ```
 
-Browser tests use installed Google Chrome and start or reuse the production preview at `http://127.0.0.1:4173/portfolio/`. Build first; the tests run without private migration records. Build output includes complete HTML, base-aware hashed assets, local fonts, notices and `.nojekyll`. Open it through the preview server, not a `file:` URL.
+Browser tests use installed Google Chrome and start or reuse the production preview at `http://127.0.0.1:4173/portfolio/`. Set `PORTFOLIO_PREVIEW_PORT` to use an isolated port when another preview is running. Build first; the tests run without private migration records. Build output includes complete HTML, the resume PDF, base-aware hashed assets, local fonts, notices and `.nojekyll`. Open it through the preview server, not a `file:` URL.
 
 On slow network-mounted filesystems, use a local working copy for npm installation and validation. During this migration a checksum-verified local mirror was necessary; its paths and actual results are recorded in private validation evidence. This does not change the supported Node/npm workflow or authorize publication.
 
@@ -47,6 +47,7 @@ On slow network-mounted filesystems, use a local working copy for npm installati
 - [services/web/src/styles/site.css](services/web/src/styles/site.css): responsive framing, typography and print rules.
 - [services/web/src/scene](services/web/src/scene): optional procedural desk, content-driven stations and camera.
 - [services/web/src/lib](services/web/src/lib): pure, tested layout and capability decisions.
+- [services/web/public/resume.pdf](services/web/public/resume.pdf): the owner-approved, publicly accessible resume. Replace this file to update the Resume link, then rebuild and refresh `docs`.
 - [services/web/public/licenses](services/web/public/licenses): retained reference, font and dependency notices.
 
 The name mesh uses a renamed, locally generated Space Grotesk subset under OFL-1.1. Website fonts are locally bundled Space Grotesk and Source Sans 3. The reference composition is MIT licensed; GSAP has its own Standard No Charge license, not MIT. See the shipped notices before reusing or updating assets.
@@ -61,7 +62,7 @@ For subsequent refreshes, repeat content, privacy, licensing, build and browser 
 
 ## Publication Safety
 
-GitHub Pages is the selected hosting target; Azure deployment is not needed. The GitHub username and repository URL have not been supplied, and this workspace has not been published. No canonical URL is invented. Public copy still requires the owner's and employer's confidentiality review.
+GitHub Pages is the selected hosting target for `bhawana1212/portfolio`; Azure deployment is not needed. Public copy still requires the owner's and employer's confidentiality review. The owner explicitly requested publication of the shared resume as `resume.pdf`; the original workspace PDF remains ignored.
 
 The public allowlist is the reviewed `docs` folder, frontend public source/configuration/lockfile, this README and ignore rules. Exclude dependency directories, staging builds, test output and all private planning/source/editor material, including `.azure`, `.copilot-azure`, `.cline_storage` and `.vscode`. Ignore patterns do not protect already-tracked files or manual browser uploads; review the exact files being published. Never upload the entire workspace blindly.
 

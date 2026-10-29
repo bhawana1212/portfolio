@@ -1,6 +1,6 @@
 import { Fragment, type ReactNode } from 'react';
 import { Button, Toolbar, Tooltip } from '@fluentui/react-components';
-import { ArrowUpRightRegular, BriefcaseRegular, CodeRegular, BookOpenRegular, HatGraduationRegular, MailRegular, PrintRegular, WindowConsoleRegular } from '@fluentui/react-icons';
+import { ArrowUpRightRegular, BriefcaseRegular, CodeRegular, BookOpenRegular, DocumentRegular, HatGraduationRegular, MailRegular, PrintRegular, WindowConsoleRegular } from '@fluentui/react-icons';
 import { portfolio, type Detail } from '../data/portfolio';
 
 const sections = [
@@ -34,15 +34,15 @@ export function PortfolioContent({ enhancement }: { enhancement?: ReactNode }) {
   return <>
     <a className="skip" href="#main">Skip to content</a>
     <header className="masthead" id="masthead"><a className="wordmark" href="#main"><span aria-hidden="true">BS</span>{portfolio.name}</a>
-      <nav aria-label="Portfolio sections">{sections.map(({ id, title, icon: Icon }) => <a key={id} href={`#${id}`}><Icon aria-hidden="true" /><span>{title}</span></a>)}</nav>
+      <nav aria-label="Portfolio sections"><a href="#desk">About</a>{sections.map(({ id, title, icon: Icon }) => <a key={id} href={`#${id}`}><Icon aria-hidden="true" /><span>{title}</span></a>)}</nav>
       <Tooltip content="Print resume" relationship="label"><Button className="js-action icon-action" appearance="subtle" icon={<PrintRegular />} aria-label="Print resume" onClick={() => window.print()} /></Tooltip>
     </header>
     <main id="main" tabIndex={-1}>
       <div className="hero" id="desk">
         {enhancement}
-        <div className="hero-copy"><h1>{portfolio.name}</h1><p className="role">{portfolio.role}</p><p className="introduction">{portfolio.introduction}</p>
+        <div className="hero-copy"><span className="hero-eyebrow">About</span><h1>{portfolio.name}</h1><p className="role">{portfolio.role}</p><p className="introduction">{portfolio.introduction}</p>
           <p className="core-tools">{portfolio.coreTools}</p>
-          <Toolbar className="hero-actions" aria-label="Contact and resume" size="large"><Button className="js-action" appearance="primary" icon={<PrintRegular />} onClick={() => window.print()}>Print resume</Button><Contacts /></Toolbar>
+          <Toolbar className="hero-actions" aria-label="Contact and resume" size="large"><a className="resume-link" href={`${import.meta.env.BASE_URL}resume.pdf`}><DocumentRegular aria-hidden="true" />Resume<ArrowUpRightRegular aria-hidden="true" /></a><Contacts /></Toolbar>
         </div>
         <a className="next-section" href="#experience"><BriefcaseRegular aria-hidden="true" />Experience<span aria-hidden="true">01</span></a>
       </div>

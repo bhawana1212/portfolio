@@ -17,6 +17,10 @@ describe('shared semantic portfolio', () => {
     expect(container.querySelectorAll('.skills dt').length).toBe(10);
     expect(container.querySelector('canvas')).toBeNull();
   });
+  it('links to the shared PDF without invoking print', () => {
+    render(<App />);
+    expect(screen.getByRole('link', { name: 'Resume' }).getAttribute('href')).toBe(`${import.meta.env.BASE_URL}resume.pdf`);
+  });
   it('uses the browser print action', () => {
     const print = vi.spyOn(window, 'print').mockImplementation(() => undefined);
     render(<App />);

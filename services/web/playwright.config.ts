@@ -4,6 +4,8 @@ import { resolve } from 'node:path';
 const validation = process.env.PORTFOLIO_SOURCE_ROOT
   ? resolve(process.env.PORTFOLIO_SOURCE_ROOT, '.azure/validation')
   : resolve('test-results');
+const previewPort = process.env.PORTFOLIO_PREVIEW_PORT ?? '4173';
+const previewUrl = `http://127.0.0.1:${previewPort}/portfolio/`;
 
 export default defineConfig({
   testDir: './tests',
@@ -12,9 +14,9 @@ export default defineConfig({
   workers: 1,
   timeout: 90000,
   webServer: {
-    command: 'npm run preview -- --host 127.0.0.1 --port 4173 --strictPort',
-    url: 'http://127.0.0.1:4173/portfolio/',
+    command: `npm run preview -- --host 127.0.0.1 --port ${previewPort} --strictPort`,
+    url: previewUrl,
     reuseExistingServer: true,
   },
-  use: { baseURL: 'http://127.0.0.1:4173/portfolio/', channel: 'chrome', headless: true, launchOptions: { args: ['--enable-unsafe-swiftshader'] } },
+  use: { baseURL: previewUrl, channel: 'chrome', headless: true, launchOptions: { args: ['--enable-unsafe-swiftshader'] } },
 });

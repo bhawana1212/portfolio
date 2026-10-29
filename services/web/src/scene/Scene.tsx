@@ -50,15 +50,15 @@ function CameraRig({ onReady, onFailure }: Pick<SceneProps, 'onReady' | 'onFailu
     const data = measured.current;
     const hero = data.scroll < (data.anchors[1]?.top ?? Infinity) * .5;
     const desktop = size.width > 860;
-    const left = desktop && !hero ? document.querySelector('#experience .section-inner')?.getBoundingClientRect().right ?? size.width * .57 : 0;
-    const top = desktop && hero ? Math.max(0, document.querySelector('.hero-copy')?.getBoundingClientRect().bottom ?? 0) : 0;
+    const left = desktop ? hero ? (document.querySelector('.hero-copy')?.getBoundingClientRect().right ?? size.width * .36) + 32 : document.querySelector('#experience .section-inner')?.getBoundingClientRect().right ?? size.width * .57 : 0;
+    const top = desktop && hero ? Math.max(0, document.querySelector('#masthead')?.getBoundingClientRect().bottom ?? 0) : 0;
     if (!curves.current || Math.abs(data.left - left) > 1 || Math.abs(data.top - top) > 1) {
       data.left = left; data.top = top;
       const frame = framingFor(size.width, size.height, left, top);
       const points = data.anchors.map(anchor => {
         const station = stations.find(entry => entry.id === anchor.id) ?? stations[0];
-        const target = new Vector3(...station.position).add(new Vector3(0, station.kind === 'desk' ? 1.3 : .35, 0));
-        const distance = fitDistance(station.kind === 'desk' ? 8 : 4.8, station.kind === 'desk' ? 5.6 : 4.4, frame.aspect) * size.height / Math.max(size.height * .4, size.height - top);
+        const target = new Vector3(...station.position).add(new Vector3(0, station.kind === 'desk' ? 1 : .35, 0));
+        const distance = fitDistance(station.kind === 'desk' ? 6.4 : 4.8, station.kind === 'desk' ? 3.8 : 4.4, frame.aspect) * size.height / Math.max(size.height * .4, size.height - top);
         return { target, position: target.clone().add(new Vector3(station.kind === 'desk' ? .22 : .1, .34, 1).normalize().multiplyScalar(distance)) };
       });
       if (points.length > 1) curves.current = { position: new CatmullRomCurve3(points.map(point => point.position)), target: new CatmullRomCurve3(points.map(point => point.target)) };
